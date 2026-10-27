@@ -1,0 +1,11 @@
+# Data: never commit
+*.csv
+*.zip
+etf_download_date.txt
+outputs/raw/
+outputs/processed/
+
+# Jupyter / Python clutter
+.ipynb_checkpoints/
+__pycache__/
+.env
