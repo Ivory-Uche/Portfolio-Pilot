@@ -4,6 +4,13 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
+# files the notebooks write while exploring; the notebooks keep them as outputs
+reports/figures/*
+reports/tables/*
+reports/numbers.json
+!reports/figures/.gitkeep
+!reports/tables/.gitkeep
+
 # environments and caches
 .venv/
 venv/
