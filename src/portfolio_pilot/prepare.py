@@ -10,11 +10,15 @@ def ratio(num, den):
 
 
 def fit_caps(train, quantile, results=None):
-    """Caps for the debt-to-income and liquid-to-income ratios, from the training households."""
+    """Caps for the debt-to-income and liquid-to-income ratios, from the training households.
+
+    The caps are the `quantile` of each ratio, rounded to two decimals.
+    """
     results = Results() if results is None else results
     dti = ratio(train["debt"], train["income"])
     lti = ratio(train["liq"], train["income"])
-    caps = {"dti": float(dti.quantile(quantile)), "liq_to_income": float(lti.quantile(quantile))}
+    caps = {"dti": float(dti.quantile(quantile).round(2)),
+            "liq_to_income": float(lti.quantile(quantile).round(2))}
     results.note("features", "caps_from_train", caps)
     results.note("features", "train_ratio_undefined_income_le_0", int((train["income"] <= 0).sum()))
     results.note("features", "train_dti_above_cap", int((dti > caps["dti"]).sum()))

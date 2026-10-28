@@ -31,7 +31,7 @@ def test_caps_come_from_the_training_households_only(households):
     other["debt"] = other["debt"] * 1000                       # extreme values elsewhere must not matter
     assert fit_caps(train, 0.99) == caps
     expected = float(ratio(train["debt"], train["income"]).quantile(0.99))
-    assert caps["dti"] == pytest.approx(expected)
+    assert caps["dti"] == round(expected, 2)                   # caps are rounded to two decimals
 
 
 def test_fit_caps_records_training_counts(households):

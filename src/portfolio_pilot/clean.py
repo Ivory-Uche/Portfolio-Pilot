@@ -31,6 +31,32 @@ def load_scf(path, columns, results=None):
     return full
 
 
+# Plain-English labels for the printed quality table
+CHECK_DESCRIPTIONS = {
+    "age_under_18_or_over_100": "Age is outside 18 to 100",
+    "weight_not_positive": "Survey weight is zero or negative",
+    "liq_negative": "Liquid assets are negative",
+    "debt_negative": "Debt is negative",
+    "equity_negative": "Equity is negative",
+    "fin_negative": "Financial assets are negative",
+    "equity_more_than_fin": "Equity exceeds financial assets",
+    "liq_more_than_fin": "Liquid assets exceed financial assets",
+    "both_risk_flags_1": "Both risk flags equal 1",
+}
+
+
+def quality_tables(results):
+    """Readable tables of the quality checks and of the valid unusual values (from clean_scf)."""
+    quality = pd.DataFrame([
+        {"Check": CHECK_DESCRIPTIONS[name], "Rows with problem": results["errors"][name],
+         "Status": "PASS" if results["errors"][name] == 0 else "REVIEW"}
+        for name in CHECK_DESCRIPTIONS])
+    genuine = pd.DataFrame([
+        {"Value": name, "Rows": n, "Interpretation": "Valid value; retained for analysis"}
+        for name, n in results["genuine"].items()])
+    return quality, genuine
+
+
 def quality_checks(hh):
     """Boolean masks, one per check; True marks a row with a potential problem."""
     return {
