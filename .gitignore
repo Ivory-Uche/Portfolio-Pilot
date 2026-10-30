@@ -1,11 +1,27 @@
-# Data: never commit
-*.csv
-*.zip
-etf_download_date.txt
-outputs/raw/
-outputs/processed/
+# data: never committed; the README explains how to obtain it
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
 
-# Jupyter / Python clutter
-.ipynb_checkpoints/
+# files the notebooks write while exploring; the notebooks keep them as outputs
+reports/figures/*
+reports/tables/*
+reports/numbers.json
+!reports/figures/.gitkeep
+!reports/tables/.gitkeep
+
+# environments and caches
+.venv/
+venv/
 __pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# credentials
 .env
+*.key

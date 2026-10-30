@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-pilot"
+version = "0.1.0"
+description = "Investor archetypes from survey data and ETF allocation for self-directed investors"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas>=2.2",
+    "scikit-learn",
+    "matplotlib",
+    "pyyaml",
+    "yfinance",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ipykernel", "nbformat", "nbclient"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
