@@ -11,6 +11,9 @@ reports/numbers.json
 !reports/figures/.gitkeep
 !reports/tables/.gitkeep
 
+# trained models: never committed; run_baselines rebuilds them
+artifacts/
+
 # environments and caches
 .venv/
 venv/
