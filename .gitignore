@@ -9,6 +9,7 @@ reports/figures/*
 reports/tables/*
 reports/numbers.json
 !reports/figures/.gitkeep
+!reports/figures/m4_*.png
 !reports/tables/.gitkeep
 
 # trained models: never committed; run_baselines rebuilds them
