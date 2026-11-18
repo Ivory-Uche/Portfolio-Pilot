@@ -50,6 +50,13 @@ The k-selection in notebook 03 takes a few minutes; set `clustering.n_bootstrap`
 
 Run the tests with `pytest`.
 
+## License
+
+Our code is released under the MIT License (see `LICENSE`). The license covers our code only.
+We do not own the data: the Survey of Consumer Finances belongs to the Federal Reserve Board and the ETF prices
+come from Yahoo Finance, each under its own terms (see the Data table above). Neither dataset is included in this repository.
+The project is educational and is not financial advice.
+
 ## Project structure
 
 ```
