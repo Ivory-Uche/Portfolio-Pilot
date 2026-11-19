@@ -1,7 +1,0 @@
-# --- add to .gitignore for M4 ---
-# results/ is committed (small CSVs and figures), even though *.csv is ignored elsewhere
-!results/
-!results/*.csv
-!results/figures/*.png
-# trained models are rebuilt by the command, never committed
-artifacts/
