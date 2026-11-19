@@ -1,16 +1,12 @@
 """M4 figures, drawn from the saved validation predictions (no retraining)."""
-
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def _weighted_cm(y, p, w, n):
     cm = np.zeros((n, n))
     for t, q, ww in zip(y, p, w):
-        cm[t, q] += ww
+        cm[int(t), int(q)] += ww
     return cm / cm.sum(axis=1, keepdims=True).clip(min=1e-12) * 100
 
 

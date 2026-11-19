@@ -3,7 +3,6 @@
 Archetypes are ordered A0 (most conservative) ... A4 (most growth-oriented), so the size and
 direction of an error matter: predicting a more aggressive archetype than the true one is the costly error.
 """
-
 import numpy as np
 import pandas as pd
 from sklearn.base import clone
@@ -14,7 +13,7 @@ USES_SAMPLE_WEIGHT = {"MajorityClass", "LogisticRegression"}
 
 
 def metrics(y_true, y_pred, w, n_classes=5):
-    """All metrics are weighted by the survey weights, so they describe the population."""
+    """Every metric is weighted by the survey weights, so it describes the population."""
     y_true, y_pred, w = np.asarray(y_true), np.asarray(y_pred), np.asarray(w, float)
     diff = y_pred - y_true
     return {
@@ -32,8 +31,7 @@ def per_class_f1(y_true, y_pred, w, n_classes=5):
 
 
 def _model_name(model):
-    m = model.steps[-1][1] if hasattr(model, "steps") else model
-    return type(m).__name__
+    return type(model.steps[-1][1] if hasattr(model, "steps") else model).__name__
 
 
 def fit(model, X, y, w):

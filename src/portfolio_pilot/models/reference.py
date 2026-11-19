@@ -1,5 +1,4 @@
 """Models that learn nothing from the features: the floor every baseline must clear."""
-
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 
@@ -22,7 +21,7 @@ class QuestionnaireRule(BaseEstimator, ClassifierMixin):
     """A fixed robo-advisor style rule, not learned from data.
 
     score = risk_willingness (0-2) + age points (younger = more capacity, 0-2), so the score runs 0-4.
-    The score is mapped evenly onto archetypes 0..k-1 (with k = 5, score s -> archetype s).
+    The score is spread evenly over archetypes 0..k-1 (with k = 5, score s -> archetype s).
     """
 
     def __init__(self, age_points=None, n_classes=5):
@@ -35,5 +34,5 @@ class QuestionnaireRule(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         pts = X["age_band"].map(self.age_points).fillna(0).to_numpy()
-        score = X["risk_willingness"].to_numpy() + pts          # 0..4
+        score = X["risk_willingness"].to_numpy() + pts
         return np.rint(score / 4 * (self.n_classes - 1)).astype(int)

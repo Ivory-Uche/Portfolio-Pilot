@@ -1,0 +1,17 @@
+{
+  "python": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.4.2",
+  "pandas": "2.2.3",
+  "scikit-learn": "1.6.1",
+  "seed": 7275,
+  "archetypes_k": 5,
+  "k_knn": 15,
+  "success_criterion": {
+    "min_macro_f1": 0.7,
+    "max_severe_over_risk": 0.05
+  },
+  "n_train": 3052,
+  "n_val": 654,
+  "test_loaded": false
+}

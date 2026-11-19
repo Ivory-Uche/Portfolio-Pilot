@@ -1,0 +1,6 @@
+Model,"Macro F1, training","Macro F1, 5-fold CV (mean ± SD)","Macro F1, validation","Severe over-risk, validation","Within one archetype, validation",Meets criterion
+Reference: majority class,0.089,0.085 ± 0.005,0.088,0.0%,48.6%,No
+Rule: questionnaire score,0.128,0.127 ± 0.014,0.103,5.6%,62.8%,No
+Nearest centroid,0.806,0.802 ± 0.026,0.801,0.0%,96.5%,Yes
+Logistic regression,0.841,0.833 ± 0.029,0.850,0.0%,96.9%,Yes
+k-NN (k=15),0.835,0.811 ± 0.019,0.844,0.0%,96.7%,Yes
