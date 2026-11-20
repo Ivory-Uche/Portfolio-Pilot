@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 
 from . import clean, prepare, split
+from .data_access import ensure_scf
 from .config import Results
 from .features import CLASSIFIER_FEATURES, CLUSTER_FEATURES, build_features, build_partition_features
 from .models import archetypes
@@ -19,7 +20,7 @@ def build(cfg, results=None, use_test=None):
     use_test = cfg["evaluation"]["use_test"] if use_test is None else use_test
     seed, scf, cl = cfg["seed"], cfg["scf"], cfg["clustering"]
 
-    full = clean.load_scf(cfg["paths"]["scf_file"], scf["columns"], results)
+    full = clean.load_scf(ensure_scf(cfg), scf["columns"], results)
     full, hh = clean.clean_scf(full, scf["implicate"], results)
     parts = split.split_households(hh, scf["split"], seed, scf["min_stratum_size"], results)
     if not use_test:
