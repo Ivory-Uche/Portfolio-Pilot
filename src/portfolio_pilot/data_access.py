@@ -12,11 +12,11 @@ import zipfile
 
 
 def sha256(path):
-    h = hashlib.sha256()
+    """SHA-256 of the file's content, ignoring Windows (CRLF) vs Unix (LF) line endings,
+    so a copy saved on Windows gives the same checksum as the file from the Federal Reserve."""
     with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+        data = f.read().replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def ensure_scf(cfg):
