@@ -43,6 +43,13 @@ The second install makes `src/portfolio_pilot/` importable from the notebooks, t
 | `02_eda.ipynb` | Features with training-fitted caps, outlier checks, correlations, ETF exploration | `reports/figures/`, `reports/tables/` |
 | `03_archetypes.ipynb` | Chooses the number of archetypes, fits them, labels every household | `data/processed/scf_*.csv`, `reports/` |
 | `04_pca.ipynb` | PCA on the SCF clustering variables and on the ETF returns | `reports/` |
+| `05_baselines.ipynb` | Runs the M4 baselines (`run_baselines`) and displays the results table and figures | `results/` |
+
+M4 results can also be rebuilt without the notebook, with one command from the project root:
+
+    python -m portfolio_pilot.run_baselines
+
+It rebuilds the M3 data, fits the reference and baseline models, and writes the results table, supporting tables and figures to `results/`. The test set is never loaded at M4 (`evaluation.use_test: false` in `config.yaml`). The small files in `results/` are committed; `data/` and `reports/` outputs are not.
 
 Every count quoted in the report is saved to `reports/numbers.json`. The figures and tables the notebooks write under `reports/` are exploratory and are not committed; the notebooks keep them as outputs.
 Settings (paths, random seed, split sizes, clustering options, ETF dates) are in `config.yaml`.
@@ -66,11 +73,17 @@ src/portfolio_pilot/
     split.py       train/validation/test splits, with a fixed seed
     prepare.py     caps, scaling, and weighted sampling, fitted on training data only
     features.py    engineered features and ETF returns
-    models/        archetype clustering (more model code from M4 onward)
+    models/        archetypes.py (clustering), reference.py and baselines.py (M4 models)
+    dataset.py     rebuilds the M3 data for modelling; the test set is dropped
+    data_access.py downloads the SCF file if it is missing
+    evaluate.py    survey-weighted metrics and cross-validation
+    plots.py       M4 figures
+    run_baselines.py  one command that writes every M4 result to results/
     config.py      reads config.yaml and records the numbers quoted in the report
     download_etf.py  downloads the ETF prices
-notebooks/         numbered exploration notebooks
+notebooks/         numbered notebooks
 reports/figures/   the figures used in the report
+results/           M4 result tables and figures (small files, committed)
 tests/             tests for our own functions
 app/               the microproduct (a later milestone)
 ```

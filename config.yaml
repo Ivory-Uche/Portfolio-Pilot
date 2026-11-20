@@ -13,6 +13,8 @@ paths:
   results_dir: results            # M4 result files (small CSVs, committed)
 
 scf:
+  # Where data_access.ensure_scf downloads the summary extract (CSV inside a zip) if data/raw/SCFP2025.csv is missing
+  url: https://www.federalreserve.gov/econres/files/scfp2025excel.zip
   # SCF column names in the summary extract (check against the SCF codebook)
   columns:
     household_id: YY1
