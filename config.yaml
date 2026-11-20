@@ -15,6 +15,8 @@ paths:
 scf:
   # Where data_access.ensure_scf downloads the summary extract (CSV inside a zip) if data/raw/SCFP2025.csv is missing
   url: https://www.federalreserve.gov/econres/files/scfp2025excel.zip
+  # SHA-256 of the SCF file used for the report (line endings ignored); a warning is printed if the file differs
+  sha256: 8f6de8f528de484eeca6eb01a19566a0f084ba21452c1198e8eebf03fc43a8f8
   # SCF column names in the summary extract (check against the SCF codebook)
   columns:
     household_id: YY1
